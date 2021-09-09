@@ -250,13 +250,6 @@ public abstract class BasePlugin<K extends BaseExtension> implements Plugin<Proj
                 "ext", "zip"
                 ));
 
-        // Check FG Version, unless its disabled
-        List<String> lines = Lists.newArrayListWithExpectedSize(5);
-        Object disableUpdateCheck = project.getProperties().get("net.minecraftforge.gradle.disableUpdateChecker");
-        if (!"true".equals(disableUpdateCheck) && !"yes".equals(disableUpdateCheck) && !new Boolean(true).equals(disableUpdateCheck))
-        {
-            doFGVersionCheck(lines);
-        }
 
         if (!displayBanner)
             return;
@@ -271,9 +264,6 @@ public abstract class BasePlugin<K extends BaseExtension> implements Plugin<Proj
         logger.lifecycle("         by: Searge, ProfMobius, Fesh0r,         ");
         logger.lifecycle("         R4wk, ZeuX, IngisKahn, bspkrs           ");
         logger.lifecycle("#################################################");
-
-        for (String str : lines)
-            logger.lifecycle(str);
 
         displayBanner = false;
     }

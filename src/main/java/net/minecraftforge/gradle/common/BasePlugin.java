@@ -99,6 +99,7 @@ public abstract class BasePlugin<K extends BaseExtension> implements Plugin<Proj
     @Override
     public final void apply(Project arg)
     {
+        this.project.getLogger().lifecycle("ForgeGradle: {}", this.getVersionString());
         project = arg;
 
         // check for gradle version
@@ -208,8 +209,6 @@ public abstract class BasePlugin<K extends BaseExtension> implements Plugin<Proj
 
     public abstract void applyPlugin();
 
-    private static boolean displayBanner = true;
-
     private void getRemoteJsons()
     {
         // MCP json
@@ -249,23 +248,6 @@ public abstract class BasePlugin<K extends BaseExtension> implements Plugin<Proj
                 "classifier", "srg",
                 "ext", "zip"
                 ));
-
-
-        if (!displayBanner)
-            return;
-
-        Logger logger = this.project.getLogger();
-        logger.lifecycle("#################################################");
-        logger.lifecycle("         ForgeGradle {}        ", this.getVersionString());
-        logger.lifecycle("  https://github.com/MinecraftForge/ForgeGradle  ");
-        logger.lifecycle("#################################################");
-        logger.lifecycle("               Powered by MCP {}               ", this.getExtension().getMcpVersion());
-        logger.lifecycle("             http://modcoderpack.com             ");
-        logger.lifecycle("         by: Searge, ProfMobius, Fesh0r,         ");
-        logger.lifecycle("         R4wk, ZeuX, IngisKahn, bspkrs           ");
-        logger.lifecycle("#################################################");
-
-        displayBanner = false;
     }
 
     private String getVersionString()
